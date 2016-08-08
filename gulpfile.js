@@ -7,8 +7,6 @@ var gulp       = require('gulp'),
     watchify   = require('watchify'),
     browserSync = require('browser-sync').create();
 
-// var isDev = (process.env.NODE_ENV === 'development') ? true : false;
-
 function compile(watch) {
     // Browserify needs ONLY ONE entry point of your app
     // https://github.com/substack/node-browserify#usage
@@ -55,7 +53,6 @@ gulp.task('js', function() {
 
 
 gulp.task('html', function() {
-    // Gets .html files in pages
     return gulp.src( './src/*.html' )
         .pipe(gulp.dest( './dist' ))
         .pipe(browserSync.stream());

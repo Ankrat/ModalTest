@@ -1,0 +1,35 @@
+{
+  "name": "modal-module",
+  "version": "0.0.1",
+  "description": "Create a modal window in Javascript ES6 class",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-plugin-lodash": "^3.2.6",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.13.2",
+    "babelify": "^7.3.0",
+    "browser-sync": "^2.14.0",
+    "browserify": "^13.1.0",
+    "gulp": "^3.9.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "lodash": "^4.14.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ankrat/ModalTest.git"
+  },
+  "author": "Yann Le Corre",
+  "license": "private",
+  "bugs": {
+    "url": "https://github.com/Ankrat/ModalTest/issues"
+  },
+  "homepage": "https://github.com/Ankrat/ModalTest#readme"
+}

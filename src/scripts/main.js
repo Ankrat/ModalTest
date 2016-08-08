@@ -51,8 +51,7 @@ actionBtn.addEventListener('click', function(e){
     let modalNumber = document.querySelector('#modalNum').value;
     let actionDo = document.querySelector('input[type="radio"]:checked').value;
     let selectModal = (modalNumber == 1) ? test : test2;
-    console.log("modalNumber => ", modalNumber);
-    console.log("Selected Modal => ", selectModal);
+
     if( actionDo == "show"){
         selectModal.show();
     }else{

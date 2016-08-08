@@ -6,15 +6,6 @@ import extend from 'lodash/extend';
 
 
 
-const defaultOptions = {
-        containerEl : document.querySelector(".modals-wrapper"),
-        content: "String (HTML String) to inserted in the modal",
-        onHide: null,
-        onShow: null,
-        onClickOutside: null,
-        activeClass: 'modal--is-active',
-        containerActiveClass: 'modals-wrapper--is-active'
-    };
 
 
 
@@ -51,10 +42,19 @@ const modalWindow = (content) => {
 
 export class Modal {
 
-    constructor(options) {
+    constructor(opt) {
 
+        this.defaultOptions = {
+            containerEl : document.querySelector(".modals-wrapper"),
+            content: "String (HTML String) to inserted in the modal",
+            onHide: null,
+            onShow: null,
+            onClickOutside: null,
+            activeClass: 'modal--is-active',
+            containerActiveClass: 'modals-wrapper--is-active'
+        };
         // Extend default options with user options
-        let extOptions = extend( defaultOptions, options);
+        let extOptions = extend( this.defaultOptions, opt);
 
         // Create the HTML DOM from String content
         this.el = modalWindow( extOptions.content );
@@ -66,8 +66,7 @@ export class Modal {
         // Attach options extended to the instance of Modal
         this.options = extOptions;
 
-        console.log("extOptions.onShow => ", extOptions.onShow);
-        console.log("extOptions.onHide => ", extOptions.onHide);
+
 
         // Append the content to the modalWrapper if not already
         if (!this.options.containerEl.contains(this.el)) {
@@ -91,13 +90,14 @@ export class Modal {
         // Add to modal window the active class
         this.el.classList.remove( this.options.activeClass );
 
+        // Remove listener from the document now that the modal is closed
+        document.removeEventListener('click', this._onDocClick.bind(this), true);
+
         // If onShow function in options
         if (this.options.onHide) {
+            console.log("this in onHide => ", this);
             this.options.onHide();
         }
-
-        // Remove listener from the document now that the modal is closed
-        document.removeEventListener('click', this._onDocClick, true);
 
     }
 

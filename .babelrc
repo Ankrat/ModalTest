@@ -1,4 +1,4 @@
 {
-    "plugins": ["lodash"],
+    "plugins": ["lodash", "babel-plugin-lodash"],
     "presets": ["es2015"]
 }
