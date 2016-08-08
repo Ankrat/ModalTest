@@ -49,12 +49,7 @@ console.log( "test => ", test);
 const actionBtn = document.querySelector('.js-action');
 actionBtn.addEventListener('click', function(e){
     let modalNumber = document.querySelector('#modalNum').value;
-    let actionDo = document.querySelector('input[type="radio"]:checked').value;
     let selectModal = (modalNumber == 1) ? test : test2;
 
-    if( actionDo == "show"){
-        selectModal.show();
-    }else{
-        selectModal.hide();
-    }
+    selectModal.show();
 });

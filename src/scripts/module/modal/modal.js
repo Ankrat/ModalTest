@@ -84,19 +84,19 @@ export class Modal {
      */
     hide () {
 
-        // Add to modal container the active class
+        // Remove to modal container the active class
         this.options.containerEl.classList.remove( this.options.containerActiveClass );
-
         // Add to modal window the active class
         this.el.classList.remove( this.options.activeClass );
 
         // Remove listener from the document now that the modal is closed
-        document.removeEventListener('click', this._onDocClick.bind(this), true);
+        document.removeEventListener('click', this._onDocClickEventListener, true);
 
         // If onShow function in options
-        if (this.options.onHide) {
-            console.log("this in onHide => ", this);
-            this.options.onHide();
+        return () => {
+            if (this.options.onHide) {
+                this.options.onHide();
+            }
         }
 
     }
@@ -111,9 +111,10 @@ export class Modal {
      */
     show () {
 
+        // Add reference to `this` specific eventListener
+        this._onDocClickEventListener = this._onDocClick.bind(this);
         // Add listener on the document to close modal
-        document.addEventListener('click', this._onDocClick.bind(this), true);
-
+        document.addEventListener('click', this._onDocClickEventListener, true);
         // Add to modal container the active class
         this.options.containerEl.classList.add( this.options.containerActiveClass );
 
@@ -121,8 +122,10 @@ export class Modal {
         this.el.classList.add( this.options.activeClass );
 
         // If onShow function in options
-        if (this.options.onShow) {
-            this.options.onShow();
+        return () => {
+            if (this.options.onShow) {
+                this.options.onShow();
+            }
         }
     }
 
@@ -135,7 +138,6 @@ export class Modal {
      * @private
      */
     _onDocClick (e) {
-
         let clickedItem = e.target,
             // has-clicked-in the active modal (not the wrapper, the modal)
             // think CTA in the active modal !!!
